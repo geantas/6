@@ -7,3 +7,7 @@
     border: 1px solid lightgrey;
     padding: 10px;
 }
+
+.editable-td {
+    background: #d3d3d3 url("./assets/edit.png") no-repeat right;
+}

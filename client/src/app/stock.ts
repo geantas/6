@@ -3,19 +3,22 @@ export class Stock {
         public _id: string,
         public stockName: string,
         public stockAuthor: string,
-        public stockPrice: number,
+        public stockPrice: string,
         public stockTimestamp: any,
+        public updatedStockPrice : string,
+        public updatedStockAuthor: string,
+        public updatedStockTimestamp: any
+
     )
      {  }
 }
-
 
 export class updatedStock {
     constructor(
         public _id: string,
         public stockName: string,
-        public stockAuthor: string,
-        public updatedStockPrice: number,
+        public updatedStockPrice: string,
+        public updatedStockAuthor: string,
         public updatedStockTimestamp: any
     )
     {  }

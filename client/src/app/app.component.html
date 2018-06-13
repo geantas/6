@@ -35,19 +35,19 @@
   </tr>
   <tr *ngFor="let stock of stockList">
   <td>
-    <a [routerLink]="['/stock/' + _id]">{{stock.stockName}}</a> <!-- stock name -->
+    <a [routerLink]="['/stock/3']">{{stock.stockName}}</a> <!-- stock name -->
   </td>
-  <td contenteditable='true'pInputText #editable (input)="onRowClick($event, stock.stockName)" (keypress)="onlyNumberKey($event)" (blur)="updateAStock($event, stock._id)">
-    {{stock.stockPrice}} <!-- stock price -->
+  <td *ngFor="let latestUpdatedStock of (stock.stockPrices | slice:stock.stockPrices.length -1)" contenteditable='true'pInputText #editable (input)="onRowClick($event, stock.stockName)" (keypress)="onlyNumberKey($event)" (blur)="updateAStock($event, stock._id, stock.stockName)" class="editable-td" >
+    {{latestUpdatedStock.updatedStockPrice}} <!-- stock price -->
   </td>
   <td>
    {{stock.stockAuthor}} <!-- stock author -->
   </td>
-  <td>
-    {{stock.updatedStockTimestamp }} <!-- last updated -->
+  <td *ngFor="let latestUpdatedStock of (stock.stockPrices | slice:stock.stockPrices.length -1)" contenteditable='true'pInputText #editable (input)="onRowClick($event, stock.stockName)" (keypress)="onlyNumberKey($event)" (blur)="updateAStock($event, stock._id, stock.stockName)">
+    {{latestUpdatedStock.updatedStockTimestamp | date: 'dd/MM-yyyy HH:mm'}} <!-- last updated -->
   </td>
   <td>
-    {{stock.stockTimestamp }} <!-- stock added on -->
+    {{stock.stockTimestamp | date: 'dd/MM-yyyy HH:mm'}} <!-- stock added on -->
   </td>
     <td><button>edit</button></td>
   </tr>

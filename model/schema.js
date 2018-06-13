@@ -8,10 +8,6 @@ var connection = mongoose.createConnection("mongodb://localhost/StocksRates");
 autoIncrement.initialize(connection);
 
 exports.stockSchema = new Schema({
-    _id: {
-        type: String,
-        index: true
-    },
     stockName: {
         type: String,
     },
@@ -29,18 +25,31 @@ exports.stockSchema = new Schema({
     },
     stockPrices: {
         type: [],
-        stockId: {
-            type: String,
-            index: true
-        },
-        newStockPrice : {
+        updatedStockPrice : {
             type: Number
         },
-        newStockTimestamp: {
+        updatedStockAuthor: {
+            type: String,
+        },
+        updatedStockTimestamp: {
             type : Date,
             default: Date.now
         }
     }
+});
+
+
+exports.updatedStockSchema = new Schema({
+        updatedStockPrice : {
+            type: Number
+        },
+        updatedStockAuthor: {
+            type: String,
+        },
+        updatedStockTimestamp: {
+            type : Date,
+            default: Date.now
+        }
 });
 
 
@@ -53,3 +62,4 @@ module.exports.addPost = function (newStock, callback) {
 };
 
 exports.Stock = mongoose.model('Stock',exports.stockSchema);
+exports.updatedStockSchema = mongoose.model('updatedStockSchema',exports.updatedStockSchema);

@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   title = 'MEAN app with Socket IO';
   // get current date & time
   date = new Date();
-  model = new Stock( '', '', 'user', null, this.date);
+  model = new Stock( '','', 'user', '', this.date, '', '', '');
   public stockList = [];
 
   constructor (private stockService: StockService) {}
@@ -42,13 +42,15 @@ export class AppComponent implements OnInit {
       );
   }
 
-  updateAStock(event, id) {
+  updateAStock(event, id, stockname) {
 
-      //var editableStockName = id;
+      var editableStockId = id;
+      var editableStockName = stockname;
       var updatedPrice = event.target.outerText;
+
       console.log("New price " + updatedPrice + " saved");
 
-      updatedPrice = new updatedStock( id , '', 'user', updatedPrice, this.date);
+      updatedPrice = new updatedStock( editableStockId , editableStockName, updatedPrice, 'gintasNOW' , this.date );
 
 
       this.stockService.updateStock(updatedPrice)

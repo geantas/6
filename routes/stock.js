@@ -18,10 +18,76 @@ router.get('/get', function(req, res, next) {
 // GET A 'NEW POST' PAGE (only for logged in users)
 //router.get('/stock/:id', ensureAuthenticated, function (req, res, next) {
 
-router.post('/:id', function (req, res, next) {
+router.post('/3', function (req, res) {
     // validation
     console.log("received id: " + req.body._id);
     console.log("received stock price: " + req.body.updatedStockPrice);
+    console.log("received stock name: " + req.body.stockName);
+
+
+    var updatedStockValues = {
+       // _id: req.body._id,
+        //stockName: req.body.stockName,
+        //"stockPrices" : {
+            updatedStockPrice: req.body.updatedStockPrice,
+            updatedStockAuthor: req.body.updatedStockAuthor,
+            updatedStockTimestamp: req.body.updatedStockTimestamp
+        //}
+    };
+
+    schema.Stock.findOneAndUpdate(
+        { _id: req.body._id },
+        { $push: { stockPrices: updatedStockValues } },
+        function (error, success) {
+            if (error) {
+                console.log("error: " + error);
+            } else {
+                console.log("success: " + success);
+            }
+        });
+
+
+/*    schema.Stock.update(
+        { _id: req.body._id },
+        { $push: { "stockPrices": updateInstance } },
+        done
+    );
+    console.log("done!");*/
+
+    /*schema.Stock.findById(req.body._id, function(err, selectedStock) {
+        if (!selectedStock) {
+            console.log("error: couldn't find the doc with this id: " + req.body._id);
+            return new Error("could not load document");
+        } else {
+            console.log("success! found by ID!" + selectedStock);
+            selectedStock.stockPrices.push({
+                updatedStockPrice: req.body.updatedStockPrice
+            });
+            console.log("update success!");
+        }
+    });*/
+
+/*    updateInstance.push(function (err, updatedStock) {
+        result = err?err:updatedStock;
+        res.send(result);
+        router.notifyclients();
+        return result;
+    });*/
+
+    /*
+    schema.Stock.findById(req.body._id, function(err, updateInstance) {
+       if (!updateInstance) {
+           console.log("error: couldn't find the doc");
+           return new Error("could not load document");
+       } else {
+           console.log("inside: " + req.body._id);
+           updateInstance.stockPrices.push({
+               updatedStockPrice: req.body.updatedStockPrice,
+               updatedStockAuthor: req.body.updatedStockAuthor,
+               updatedStockTimestamp: req.body.updatedStockTimestamp
+           })
+       }
+    });*/
 
 });
 
@@ -34,15 +100,14 @@ router.post('/post', function(req, res, next) {
     if (req.body.stockName)
 
     var instance = new schema.Stock({
-        _id: req.body._id,
-        stockPrice: req.body.stockPrice,
         stockName: req.body.stockName,
         stockAuthor: req.body.stockAuthor,
+        stockPrice: req.body.stockPrice,
         stockTimestamp: req.body.stockTimestamp,
         "stockPrices" : {
-            stockTimestamp: req.body.stockTimestamp,
-            initialPrice: req.body.stockPrice,
-            stockAuthor: "gintas"
+            updatedStockPrice: req.body.stockPrice,
+            updatedStockAuthor: req.body.stockAuthor,
+            updatedStockTimestamp: req.body.stockTimestamp
     }
     });
 
