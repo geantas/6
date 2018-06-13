@@ -1,0 +1,54 @@
+<h1>
+  {{title}}
+</h1>
+
+<hr>
+
+<h2>Create new STOCK</h2>
+<form (ngSubmit)="submitStock()">
+  <div class="form-group">
+    <label for="stockName">Stock name: </label>
+    <input type="text"  class="form-control" id="stockName"
+           required
+           [(ngModel)]="model.stockName" name="stockName">
+  </div>
+  <div class="form-group">
+    <label for="stockPrice">Stock price: </label>
+    <input class="form-control" id="stockPrice"
+           required
+           [(ngModel)]="model.stockPrice" name="stockPrice" pInputText type="text" (keypress)="onlyNumberKey($event)" >
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<hr>
+
+<h2>All stocks: </h2>
+<table class="stockslist">
+  <tr>
+    <th>Stock name</th>
+    <th>Stock price</th>
+    <th>Created by</th>
+    <th>Last updated</th>
+    <th>Added on</th>
+    <th>Edit</th>
+  </tr>
+  <tr *ngFor="let stock of stockList">
+  <td>
+    <a [routerLink]="['/stock/' + _id]">{{stock.stockName}}</a> <!-- stock name -->
+  </td>
+  <td contenteditable='true'pInputText #editable (input)="onRowClick($event, stock.stockName)" (keypress)="onlyNumberKey($event)" (blur)="updateAStock($event, stock._id)">
+    {{stock.stockPrice}} <!-- stock price -->
+  </td>
+  <td>
+   {{stock.stockAuthor}} <!-- stock author -->
+  </td>
+  <td>
+    {{stock.updatedStockTimestamp }} <!-- last updated -->
+  </td>
+  <td>
+    {{stock.stockTimestamp }} <!-- stock added on -->
+  </td>
+    <td><button>edit</button></td>
+  </tr>
+</table>

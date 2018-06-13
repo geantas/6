@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+.stockslist {
+    border-collapse: collapse;
+}
+.stockslist td, .stockslist tr, .stockslist th {
+    border: 1px solid lightgrey;
+    padding: 10px;
+}
