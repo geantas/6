@@ -23,3 +23,12 @@ export class updatedStock {
     )
     {  }
 }
+
+export class deleteableStock {
+    constructor(
+        public _id: string,
+        public stockName: string
+    )
+    {  }
+}
+

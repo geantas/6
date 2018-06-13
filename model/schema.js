@@ -18,48 +18,40 @@ exports.stockSchema = new Schema({
         type: String
     },
     stockTimestamp: {
-        // type : timestamp
-        // default : timestamp.now
-        type : Date,
+        type: Date,
         default: Date.now
     },
     stockPrices: {
         type: [],
-        updatedStockPrice : {
+        updatedStockPrice: {
             type: Number
         },
         updatedStockAuthor: {
             type: String,
         },
         updatedStockTimestamp: {
-            type : Date,
+            type: Date,
             default: Date.now
         }
     }
 });
 
-
 exports.updatedStockSchema = new Schema({
-        updatedStockPrice : {
-            type: Number
-        },
-        updatedStockAuthor: {
-            type: String,
-        },
-        updatedStockTimestamp: {
-            type : Date,
-            default: Date.now
-        }
+    updatedStockPrice: {
+        type: Number
+    },
+    updatedStockAuthor: {
+        type: String,
+    },
+    updatedStockTimestamp: {
+        type: Date,
+        default: Date.now
+    }
 });
-
-
-
-
-//Schema(autoIncrement.plugin, 'stocks');
 
 module.exports.addPost = function (newStock, callback) {
     newStock.save(callback);
 };
 
-exports.Stock = mongoose.model('Stock',exports.stockSchema);
-exports.updatedStockSchema = mongoose.model('updatedStockSchema',exports.updatedStockSchema);
+exports.Stock = mongoose.model('Stock', exports.stockSchema);
+exports.updatedStockSchema = mongoose.model('updatedStockSchema', exports.updatedStockSchema);

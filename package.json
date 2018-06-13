@@ -10,6 +10,7 @@
     "live_start": "node ./node_modules/nodemon/bin/nodemon.js"
   },
   "dependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^2.1.0",
     "angular2-click-to-edit": "^1.0.52",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
