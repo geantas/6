@@ -6,10 +6,12 @@ import * as io from 'socket.io-client';
 
 @Injectable()
 export class StockService {
+
     private getStocksUrl = 'stock/get';  // URL to web API
     private postStockUrl = 'stock/post';  // URL to web API
     private deleteStockUrl = 'stock/delete';  // URL to web API
     private stockInfoUrl = 'stock/info';  // URL to web API
+    uri = 'http://localhost:3000';
     constructor(private http: Http) {
     }
 
@@ -32,13 +34,19 @@ export class StockService {
         return observable;
     }
     // Get stock info
-    stockInfo(stock: Stock): Observable<Stock> {
+/*    stockInfo(stock: Stock): Observable<Stock> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
         return this.http.post(this.stockInfoUrl, stock, options)
             .map(this.extractData)
             .catch(this.handleError);
+    }*/
+
+    stockInfo(id) {
+        return this
+            .http
+            .get(`${this.stockInfoUrl}/${id}`).map((res: Response) => res.json());
     }
 
     // Send stock to server //

@@ -8,14 +8,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LoginComponent} from "./login";
 import {SharesComponent} from "./shares";
-import { StockService, UserService  } from './_services/index';
+import {InfoComponent} from "./info";
+import {AuthenticationService, StockService, UserService} from './_services/index';
 import {HttpInterceptorHandler} from "@angular/common/http/src/interceptor";
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        SharesComponent
+        SharesComponent,
+        InfoComponent
     ],
     imports: [
         BrowserModule,
@@ -26,7 +28,8 @@ import {HttpInterceptorHandler} from "@angular/common/http/src/interceptor";
     ],
     providers: [
         StockService,
-        UserService
+        UserService,
+        AuthenticationService
     ],
     bootstrap: [AppComponent]
 })

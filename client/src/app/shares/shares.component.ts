@@ -47,7 +47,7 @@ export class SharesComponent implements OnInit {
             );
     }
 
-    showStockInfo(event, id, stockname) {
+/*    showStockInfo(event, id, stockname) {
 
         var selectedStockId = id;
         var selectedStockName = stockname;
@@ -63,7 +63,7 @@ export class SharesComponent implements OnInit {
                 // Error handler
                 error => this.errorHandler = <any>error
             );
-    }
+    }*/
 
     updateAStock(event, id, stockname) {
         var editableStockId = id;

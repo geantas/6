@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var schema = require('../model/schema');
 var database = require('../model/database');
+let Stock = require('../model/schema');
 
 // GET all stocks //
 router.get('/get', function (req, res, next) {
@@ -15,8 +16,19 @@ router.get('/get', function (req, res, next) {
 
 });
 
+router.get('/info/:id', function (req, res) {
+    let id = req.params.id;
+    schema.Stock.findById(id, function (err, stocks){
+        //return stocks.stockPrices;
+
+        res.send(stocks.stockPrices);
+        //res.render("/stock/info/"+id)
+    });
+});
+
+
 // GET one stock's history //
-router.post('/info', function (req, res, next) {
+/*router.post('/info', function (req, res, next) {
     console.log("received a request");
     schema.Stock.findOne(
         {_id: req.body._id}).exec(function (err, stock) {
@@ -28,7 +40,8 @@ router.post('/info', function (req, res, next) {
         router.notifyclients();
         return stock.stockPrices;
     });
-});
+});*/
+
 
 // UPDATE a stock //
 router.post('/update', function (req, res) {

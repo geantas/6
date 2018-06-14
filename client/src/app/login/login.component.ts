@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgModule } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 import { UserService } from '../_services/index';
 
@@ -12,13 +12,15 @@ import { AuthenticationService } from '../_services/index';
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
+    model = { username: '', password: ''};
+    //data: any;
 /*    loading = false;
     returnUrl: string;*/
 
     constructor(
         //private route: ActivatedRoute,
        // private router: Router,
+        //private http: HttpClient
         // private authenticationService: AuthenticationService
         //private alertService: AlertService
         ) { }
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+
 /*        this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {

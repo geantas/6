@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 //import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { SharesComponent } from './shares/index';
+import { InfoComponent } from './info/index';
 //import { RegisterComponent } from './register/index';
 //import { AuthGuard } from './_guards/index';
 
@@ -11,6 +12,8 @@ const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'stocks', component: SharesComponent },
+    { path: 'stock/info/:id', component: InfoComponent },
+
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
@@ -28,10 +31,10 @@ const appRoutes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'stocks', component: SharesComponent },
-    //{ path: 'stocks/info/:id', component: SharesComponent },
+    { path: 'stock/info/:id', component: InfoComponent },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+   { path: '**', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

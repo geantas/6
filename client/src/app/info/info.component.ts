@@ -1,47 +1,39 @@
-﻿import {Component, OnInit, ViewChild} from '@angular/core';
-import {updatedStock, deleteableStock, Stock, stockInfoModel} from '../stock';
-import 'rxjs/operators';
+﻿import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { Stock } from '../stock';
 import { StockService } from '../_services/stock.service';
+import { map } from 'rxjs/operators';
 
 @Component({
-    moduleId: module.id,
-    templateUrl: './shares.component.html',
-    styleUrls: ['./shares.component.css'],
-    providers: [StockService]
+    selector: 'app-info',
+    templateUrl: './info.component.html'
+    //styleUrls: ['./info.component.css']
 })
-export class SharesComponent implements OnInit {
-    isSubmitted = false;
-    title = 'Stock info';
-    errorHandler = "";
-    // Get current date & time
-    date = new Date();
-    model = new Stock('', '', 'user', '', this.date, '', '', '');
-    public stockList = [];
-    public selectedStockObj = [];
+export class InfoComponent implements OnInit {
+    stocks: any = [];
+    //stocks: any = {};
+    angForm: FormGroup;
 
-    constructor(private stockService: StockService) {
-    }
-
-    showStockInfo(event, id, stockname) {
-
-        var selectedStockId = id;
-        var selectedStockName = stockname;
-        var selectedStockObj = event.target;
-
-        selectedStockObj = new stockInfoModel(selectedStockId, selectedStockName);
-
-        this.stockService.stockInfo(selectedStockObj)
-            .subscribe(
-                selectedStock => {
-                    selectedStockObj = selectedStock;
-                },
-                // Error handler
-                error => this.errorHandler = <any>error
-            );
-    }
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private stockService: StockService,
+                ) { }
 
     ngOnInit() {
-        //this.showStockInfo();
+
+
+        this.route.params.subscribe(params => {
+            this.stockService.stockInfo(params['id']).subscribe(res => {
+                this.stocks = res;
+                console.log("xxxxxx");
+                console.log("data here: " + JSON.stringify(this.stocks));
+            });
+        });
+
     }
 
+    hasToken(){
+        return localStorage.getItem("jwtToken");
+    }
 }
