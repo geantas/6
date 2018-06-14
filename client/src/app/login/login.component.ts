@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+import { UserService } from '../_services/index';
 
 //import { AlertService, AuthenticationService } from '../_services/index';
 
@@ -11,9 +12,9 @@ import { NgModule } from '@angular/core';
 })
 
 export class LoginComponent implements OnInit {
-    //model: any = {};
-    //loading = false;
-    //returnUrl: string;
+    model: any = {};
+    loading = false;
+    returnUrl: string;
 
     constructor(
         //private route: ActivatedRoute,

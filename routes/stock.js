@@ -15,6 +15,12 @@ router.get('/get', function (req, res, next) {
 
 });
 
+// GET one stock's history //
+router.post('/info', function (req, res) {
+    console.log("received a request");
+    //res.redirect("https://gintas.dk");
+});
+
 // UPDATE a stock //
 router.post('/update', function (req, res) {
     // console.log("received id: " + req.body._id);
@@ -44,12 +50,6 @@ router.post('/update', function (req, res) {
             router.notifyclients();
             return result;
         });
-});
-
-// VIEW a stock history //
-router.get('/view/:id', function (req, res) {
-    console.log("received a request");
-    //res.redirect("https://gintas.dk");
 });
 
 // ADD a stock to database route //

@@ -1,7 +1,37 @@
-<!-- main app container -->
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <!--<alert></alert>-->
-            <router-outlet></router-outlet>
+<nav class="navbar navbar-dark" style="background-color: rgba(111,95,95,0.31); color:#FFFBF9;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a [routerLink]="['/']"
+               routerLinkActive="active" class="navbar-brand">Stock Rates App
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a [routerLink]="['/stocks']"
+                   routerLinkActive="active"><span class="glyphicon glyphicon-stats"></span> Stocks
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/login']"
+                   routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Login
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="col-sm-8 col-sm-offset-2">
+        <!--<alert></alert>-->
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<br />
+<br />
+<footer class="page-footer font-small blue pt-4 mt-4">
+    <div class="container-fluid text-center text-md-left">
+        <div class="footer-copyright text-center py-3">2018 Frameworks exam
         </div>
     </div>
+</footer>
+<br />
+<br />

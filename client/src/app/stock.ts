@@ -32,3 +32,10 @@ export class deleteableStock {
     {  }
 }
 
+export class stockInfoModel {
+    constructor(
+        public _id: string,
+        public stockName: string
+    )
+    {  }
+}

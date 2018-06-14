@@ -11,7 +11,7 @@ import {SharesComponent} from "./shares";
 import { StockService } from './_services/index';
 
 
-//import { UserService } from './_services/index';
+import { UserService } from './_services/index';
 
 
 
@@ -29,7 +29,8 @@ import { StockService } from './_services/index';
         routing
     ],
     providers: [
-        StockService
+        StockService,
+        UserService
     ],
     bootstrap: [AppComponent]
 })

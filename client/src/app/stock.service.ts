@@ -31,6 +31,17 @@ export class StockService {
         return observable;
     }
 
+    stockInfo(stock: Stock): Observable<Stock> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        //console.log(this.url + "/stock/update");
+
+        return this.http.post(this.url + "/stock/info", stock, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     // Send stock to server //
     addStock(stock: Stock): Observable<Stock> {
         let headers = new Headers({'Content-Type': 'application/json'});
@@ -40,6 +51,8 @@ export class StockService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+
 
     // Send stock update to server //
     updateStock(stock: Stock): Observable<Stock> {

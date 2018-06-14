@@ -10,6 +10,6 @@
 }
 
 .editable-td {
-    background: #f0ffc7 url("./assets/edit.png") no-repeat right;
-    padding-right: 16px;
+    background: url("./assets/edit.png") no-repeat 90% 50%;
+    background-size: 13px;
 }
