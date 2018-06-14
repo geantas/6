@@ -1,25 +1,37 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import { HomeComponent } from './home/index';
-//import { LoginComponent } from './login/index';
+import { LoginComponent } from './login/index';
+import { SharesComponent } from './shares/index';
 //import { RegisterComponent } from './register/index';
 //import { AuthGuard } from './_guards/index';
 
 
-const appRoutes: Routes = [
-    /* //
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+const routes: Routes = [
+    { path: '', component: SharesComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },*/
+    { path: 'shares', component: SharesComponent },
 
-    {path: '**', redirectTo: ''}
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
+    imports: [RouterModule.forRoot(routes)], // NgbModule],
     exports: [RouterModule],
     providers: []
 })
-export class AppRoutingModule {
+export class MEAN2RoutingModule {
 }
 
+const appRoutes: Routes = [
+    { path: '', component: SharesComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'shares', component: SharesComponent },
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
+];
+
+export const routing = RouterModule.forRoot(appRoutes);

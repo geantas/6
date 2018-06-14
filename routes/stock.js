@@ -49,7 +49,7 @@ router.post('/update', function (req, res) {
 // VIEW a stock history //
 router.get('/view/:id', function (req, res) {
     console.log("received a request");
-    res.redirect("https://gintas.dk");
+    //res.redirect("https://gintas.dk");
 });
 
 // ADD a stock to database route //

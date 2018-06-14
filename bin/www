@@ -3,10 +3,12 @@
 /**
  * Module dependencies.
  */
-
+require('rootpath')();
 var debug = require('debug')('MEAN2:server');
 var express = require('express');
 var app = express();
+var cors = require('cors');
+var config = require('config.json');
 var http = require('http');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -28,8 +30,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
-
+app.use('/stock', require('../routes/stock'));
 app.use('/stock', stock);
 app.use('/users', users);
 app.use(express.static(path.join(__dirname, '../public')));
@@ -53,6 +56,14 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
+// error handler
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).send('Invalid Token');
+    } else {
+        throw err;
+    }
+});
 
 /**
  * Get port from environment and store in Express.
@@ -67,6 +78,8 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var io = socketio(server);
+
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -138,6 +151,6 @@ function onListening() {
     var bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug('Listening on ' + bind);
-    console.log('Listening on ' + bind);
+    debug('Listening on ' + bind + " (org)");
+    console.log('Listening on ' + bind + " (orig)");
 }
