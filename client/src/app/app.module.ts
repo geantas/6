@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient, HttpHandler} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -8,12 +8,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LoginComponent} from "./login";
 import {SharesComponent} from "./shares";
-import { StockService } from './_services/index';
-
-
-import { UserService } from './_services/index';
-
-
+import { StockService, UserService  } from './_services/index';
+import {HttpInterceptorHandler} from "@angular/common/http/src/interceptor";
 
 @NgModule({
     declarations: [
@@ -26,7 +22,7 @@ import { UserService } from './_services/index';
         FormsModule,
         HttpModule,
         RouterModule,
-        routing
+        routing,
     ],
     providers: [
         StockService,

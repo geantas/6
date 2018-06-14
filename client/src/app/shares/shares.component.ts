@@ -12,12 +12,13 @@ import { StockService } from '../_services/stock.service';
 })
 export class SharesComponent implements OnInit {
     isSubmitted = false;
-    title = 'Shares';
+    title = 'Stocks';
     errorHandler = "";
     // Get current date & time
     date = new Date();
     model = new Stock('', '', 'user', '', this.date, '', '', '');
     public stockList = [];
+    public selectedStockObj = [];
 
     constructor(private stockService: StockService) {
     }
@@ -47,17 +48,17 @@ export class SharesComponent implements OnInit {
     }
 
     showStockInfo(event, id, stockname) {
+
         var selectedStockId = id;
         var selectedStockName = stockname;
         var selectedStockObj = event.target;
 
         selectedStockObj = new stockInfoModel(selectedStockId, selectedStockName);
 
-
-        this.stockService.stockInfo()
+        this.stockService.stockInfo(selectedStockObj)
             .subscribe(
-                list => {
-                    this.selectedStockObj = list;
+                selectedStock => {
+                    selectedStockObj = selectedStock;
                 },
                 // Error handler
                 error => this.errorHandler = <any>error
@@ -91,7 +92,6 @@ export class SharesComponent implements OnInit {
 
         deleteableStockObj = new deleteableStock(deleteableStockId, deleteableStockName);
 
-
         this.stockService.deleteStock(deleteableStockObj)
             .subscribe(
                 selectedStock => {
@@ -115,6 +115,5 @@ export class SharesComponent implements OnInit {
     onRowClick(event, id) {
         var editableStockName = id;
         var updatedPrice = event.target.outerText;
-        //console.log("Stock id: " + editableStockName + " | New price: " + updatedPrice);
     }
 }

@@ -3,6 +3,7 @@ import {deleteableStock, Stock} from './stock';
 import {updatedStock} from './stock';
 import './rxjs-operators';
 import {StockService} from './_services/stock.service';
+import {UserService} from './_services/user.service';
 
 @Component({
     moduleId: module.id,

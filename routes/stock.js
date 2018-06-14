@@ -16,13 +16,17 @@ router.get('/get', function (req, res, next) {
 });
 
 // GET one stock's history //
-router.get('/info', function (req, res, next) {
+router.post('/info', function (req, res, next) {
     console.log("received a request");
-    schema.Stock.find({}).exec(function (err, stocks) {
+    schema.Stock.findOne(
+        {_id: req.body._id}).exec(function (err, stock) {
         if (err)
             return console.error(err);
-        console.log("Stock have been retreived successfully: ", stocks);
-        //res.send(stocks);
+        console.log("Load success: ", stock.stockPrices);
+        var receivedcall = stock.stockprices;
+        res.send(stock.stockPrices);
+        router.notifyclients();
+        return stock.stockPrices;
     });
 });
 

@@ -32,18 +32,13 @@ export class StockService {
         return observable;
     }
     // Get stock info
-    stockInfo(): Observable<Stock> {
-        let observable = new Observable(observer => {
-            console.log("Socket:", this.stockInfoUrl);
-            this.socket = io(this.stockInfoUrl);
-            this.socket.on('refresh', (data) => {
-                observer.next(data);
-            });
-            return () => {
-                this.socket.disconnect();
-            };
-        });
-        return observable;
+    stockInfo(stock: Stock): Observable<Stock> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.post(this.stockInfoUrl, stock, options)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     // Send stock to server //

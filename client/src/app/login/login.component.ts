@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { UserService } from '../_services/index';
 
-//import { AlertService, AuthenticationService } from '../_services/index';
+import { AuthenticationService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -13,13 +13,13 @@ import { UserService } from '../_services/index';
 
 export class LoginComponent implements OnInit {
     model: any = {};
-    loading = false;
-    returnUrl: string;
+/*    loading = false;
+    returnUrl: string;*/
 
     constructor(
         //private route: ActivatedRoute,
-        //private router: Router,
-        //private authenticationService: AuthenticationService,
+       // private router: Router,
+        // private authenticationService: AuthenticationService
         //private alertService: AlertService
         ) { }
 
@@ -32,15 +32,15 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        //this.loading = true;
-        // this.authenticationService.login(this.model.username, this.model.password)
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
+/*        this.authenticationService.login(this.model.username, this.model.password)
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    //this.alertService.error(error);
+                    //this.loading = false;
+                    console.log("error: " + error);
+                });*/
     }
 }

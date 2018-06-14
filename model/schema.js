@@ -49,9 +49,26 @@ exports.updatedStockSchema = new Schema({
     }
 });
 
+exports.userSchema = new Schema({
+    fullname: {
+        type: String,
+    },
+    username: {
+        type: String,
+    },
+    password: {
+        type: String,
+    }
+});
+
 module.exports.addPost = function (newStock, callback) {
     newStock.save(callback);
 };
 
+module.exports.stockInfo = function (selectedStock, callback) {
+    selectedStock.save(callback);
+};
+
+exports.User = mongoose.model('User', exports.userSchema);
 exports.Stock = mongoose.model('Stock', exports.stockSchema);
 exports.updatedStockSchema = mongoose.model('updatedStockSchema', exports.updatedStockSchema);

@@ -7,11 +7,10 @@ import { SharesComponent } from './shares/index';
 //import { RegisterComponent } from './register/index';
 //import { AuthGuard } from './_guards/index';
 
-
 const routes: Routes = [
-    { path: '', component: SharesComponent },
+    { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'shares', component: SharesComponent },
+    { path: 'stocks', component: SharesComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
@@ -26,9 +25,10 @@ export class MEAN2RoutingModule {
 }
 
 const appRoutes: Routes = [
-    { path: '', component: SharesComponent },
+    { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'shares', component: SharesComponent },
+    { path: 'stocks', component: SharesComponent },
+    //{ path: 'stocks/info/:id', component: SharesComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

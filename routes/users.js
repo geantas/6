@@ -4,14 +4,14 @@ var router = express.Router();
 // var userService = require('../client/src/app/_services/user.service');
 
 // routes
-//router.post('/authenticate', authenticate);
-//router.post('/users/authenticate', authenticate);
-//router.get('/', getAll);
-//router.get('/current', getCurrent);
+router.post('/authenticate', authenticate);
+router.post('/users/authenticate', authenticate);
+router.get('/', getAll);
+router.get('/current', getCurrent);
 
 module.exports = router;
 
-/*function authenticate(req, res) {
+function authenticate(req, res) {
     userService.authenticate(req.body.username, req.body.password)
         .then(function (user) {
             if (user) {
@@ -25,8 +25,8 @@ module.exports = router;
         .catch(function (err) {
             res.status(400).send(err);
         });
-}*/
-/*
+}
+
 
 function getAll(req, res) {
     userService.getAll()
@@ -50,4 +50,4 @@ function getCurrent(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
-}*/
+}

@@ -1,38 +1,19 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 
 import { appConfig } from '../app.config';
-import { User } from '../_models/index';
 
 @Injectable()
-export class UserService {
+export class AuthenticationService {
     constructor(private http: HttpClient) { }
-
-    getAll() {
-        return this.http.get<User[]>(appConfig.apiUrl + '/users');
-    }
-
-    getById(_id: string) {
-        return this.http.get(appConfig.apiUrl + '/users/' + _id);
-    }
-/*
-    create(user: User) {
-        return this.http.post(appConfig.apiUrl + '/users/register', user);
-    }
-
-    update(user: User) {
-        return this.http.put(appConfig.apiUrl + '/users/' + user._id, user);
-    }
-
-    delete(_id: string) {
-        return this.http.delete(appConfig.apiUrl + '/users/' + _id);
-    }*/
 
 /*    login(username: string, password: string) {
         return this.http.post<any>(appConfig.apiUrl + '/users/authenticate', { username: username, password: password })
             .map(user => {
                 // login successful if there's a jwt token in the response
-                if (user) {
+                if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
@@ -43,6 +24,6 @@ export class UserService {
 
     logout() {
         // remove user from local storage to log user out
-        //localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUser');
     }
 }
