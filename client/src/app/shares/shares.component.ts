@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {updatedStock, deleteableStock, Stock, stockInfoModel} from '../stock';
 import 'rxjs/operators';
-import {StockService} from '../stock.service';
+import { StockService } from '../_services/stock.service';
 
 @Component({
     selector: 'shares-app',
@@ -54,10 +54,10 @@ export class SharesComponent implements OnInit {
         selectedStockObj = new stockInfoModel(selectedStockId, selectedStockName);
 
 
-        this.stockService.stockInfo(selectedStockObj)
+        this.stockService.stockInfo()
             .subscribe(
-                selectedStock => {
-                    selectedStockObj = selectedStock;
+                list => {
+                    this.selectedStockObj = list;
                 },
                 // Error handler
                 error => this.errorHandler = <any>error

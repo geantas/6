@@ -9,6 +9,7 @@ export class StockService {
     private getStocksUrl = 'stock/get';  // URL to web API
     private postStockUrl = 'stock/post';  // URL to web API
     private deleteStockUrl = 'stock/delete';  // URL to web API
+    private stockInfoUrl = 'stock/info';  // URL to web API
     constructor(private http: Http) {
     }
 
@@ -24,6 +25,20 @@ export class StockService {
                 observer.next(data);
             });
 
+            return () => {
+                this.socket.disconnect();
+            };
+        });
+        return observable;
+    }
+    // Get stock info
+    stockInfo(): Observable<Stock> {
+        let observable = new Observable(observer => {
+            console.log("Socket:", this.stockInfoUrl);
+            this.socket = io(this.stockInfoUrl);
+            this.socket.on('refresh', (data) => {
+                observer.next(data);
+            });
             return () => {
                 this.socket.disconnect();
             };
@@ -58,22 +73,10 @@ export class StockService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this.http.post(this.url+ "/stock/delete", stock, options)
+        return this.http.post(this.deleteStockUrl, stock, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
-
-
-    /*    deleteStock(stock: Stock): Observable<Stock> {
-            let headers = new Headers({'Content-Type': 'application/json'});
-            let options = new RequestOptions({headers: headers});
-
-            //console.log(this.url + "/stock/update");
-
-            return this.http.delete(this.url, stock, options)
-                .map(this.extractData)
-                .catch(this.handleError);
-        }*/
 
     // Data handlers //
     private extractData(res: Response) {

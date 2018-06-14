@@ -9,16 +9,21 @@ router.get('/get', function (req, res, next) {
     schema.Stock.find({}).exec(function (err, stocks) {
         if (err)
             return console.error(err);
-        console.log("Load success: ", stocks);
+        //console.log("Load success: ", stocks);
         res.send(stocks);
     });
 
 });
 
 // GET one stock's history //
-router.post('/info', function (req, res) {
+router.get('/info', function (req, res, next) {
     console.log("received a request");
-    //res.redirect("https://gintas.dk");
+    schema.Stock.find({}).exec(function (err, stocks) {
+        if (err)
+            return console.error(err);
+        console.log("Stock have been retreived successfully: ", stocks);
+        //res.send(stocks);
+    });
 });
 
 // UPDATE a stock //

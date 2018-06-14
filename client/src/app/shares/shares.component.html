@@ -43,7 +43,7 @@
             contenteditable='true' pInputText #editable (input)="onRowClick($event, stock.stockName)"
             (keypress)="onlyNumberKey($event)" (blur)="updateAStock($event, stock._id, stock.stockName)"
             class="editable-td">
-            {{latestUpdatedStock.updatedStockPrice}}
+            &euro; {{latestUpdatedStock.updatedStockPrice}}
         </td>
         <td>
             {{stock.stockAuthor}} <!-- stock author -->
